@@ -77,3 +77,10 @@ SELECT t1.Department, t1.Employee, t1.salary FROM
     ON e.departmentId  = d.id) t1
     where t1.rank =1
 
+
+
+SELECT Department.Name as Department, Employee.Name as Employee, Salary
+FROM  Employee INNER JOIN Department on Employee.departmentId  = Department.id
+WHERE (departmentId , salary) IN 
+(Select departmentId,max(salary) FROM Employee GROUP BY departmentId)
+
