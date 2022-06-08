@@ -1,0 +1,8 @@
+SELECT
+COUNT(DISTINCT b.player_id)
+/
+COUNT(DISTINCT a,player_id)
+AS Fraction
+FROM
+(SELECT player_id, MIN(event_date) As event_date FROM Activity GROUP BY player_id) a
+LEFT JOIN Activity b where a.player_id = b.player_id AND a.event_date +1 = b.event_date
